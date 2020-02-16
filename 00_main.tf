@@ -23,7 +23,7 @@ terraform {
     shared_credentials_file = "~/.aws/credentials"
     profile                 = "personal"
     bucket                  = "iot-jdr-terraform-tfstate"
-    key                     = "aws-iot-system.tfstate"
+    key                     = "aws-iot-tfg.tfstate"
     workspace_key_prefix    = "workspaces"
     region                  = "eu-west-1"
     encrypt                 = true
