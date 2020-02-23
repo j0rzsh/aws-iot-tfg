@@ -1,15 +1,15 @@
 resource "aws_iot_thing_type" "poc" {
-  name = "POC-Type"
+  name = var.iot_thing_type_name
 }
 
 resource "aws_iot_thing" "poc" {
-  name = "POC"
+  name = var.iot_thing_name
   thing_type_name = aws_iot_thing_type.poc.name
   attributes = var.tags
 }
 
 resource "aws_iot_certificate" "poc" {
-  active = true
+  active = var.iot_certificate_active
 }
 
 resource "aws_iot_thing_principal_attachment" "poc" {
@@ -23,7 +23,7 @@ resource "aws_iot_policy_attachment" "poc" {
 }
 resource "aws_iot_policy" "poc" {
   ##This has to be polished
-  name = "PublicToTopic2"
+  name = var.iot_policy_name
 
   policy = <<EOF
 {
