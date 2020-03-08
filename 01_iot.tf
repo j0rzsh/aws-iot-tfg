@@ -3,9 +3,9 @@ resource "aws_iot_thing_type" "poc" {
 }
 
 resource "aws_iot_thing" "poc" {
-  name = var.iot_thing_name
+  name            = var.iot_thing_name
   thing_type_name = aws_iot_thing_type.poc.name
-  attributes = var.tags
+  attributes      = var.tags
 }
 
 resource "aws_iot_certificate" "poc" {

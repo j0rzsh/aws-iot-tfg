@@ -15,19 +15,19 @@ resource "aws_elasticsearch_domain" "poc" {
     ebs_enabled = var.ebs_enabled
     volume_size = var.volume_size
   }
-#   access_policies = <<CONFIG
-# {
-#     "Version": "2012-10-17",
-#     "Statement": [
-#         {
-#             "Action": "es:*",
-#             "Principal": "*",
-#             "Effect": "Allow",
-#             "Resource": "arn:aws:es:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:domain/${var.domain}/*"
-#         }
-#     ]
-# }
-# CONFIG
+  #   access_policies = <<CONFIG
+  # {
+  #     "Version": "2012-10-17",
+  #     "Statement": [
+  #         {
+  #             "Action": "es:*",
+  #             "Principal": "*",
+  #             "Effect": "Allow",
+  #             "Resource": "arn:aws:es:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:domain/${var.domain}/*"
+  #         }
+  #     ]
+  # }
+  # CONFIG
 
   tags = var.tags
 }
