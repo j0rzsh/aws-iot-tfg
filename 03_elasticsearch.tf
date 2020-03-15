@@ -15,19 +15,26 @@ resource "aws_elasticsearch_domain" "poc" {
     ebs_enabled = var.ebs_enabled
     volume_size = var.volume_size
   }
-  #   access_policies = <<CONFIG
-  # {
-  #     "Version": "2012-10-17",
-  #     "Statement": [
-  #         {
-  #             "Action": "es:*",
-  #             "Principal": "*",
-  #             "Effect": "Allow",
-  #             "Resource": "arn:aws:es:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:domain/${var.domain}/*"
-  #         }
-  #     ]
-  # }
-  # CONFIG
+  access_policies = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": "es:*",
+      "Resource": "arn:aws:es:eu-west-1:779305303493:domain/tfg-jorge/*",
+      "Condition": {
+        "IpAddress": {
+          "aws:SourceIp": "2.153.133.106"
+        }
+      }
+    }
+  ]
+}
+POLICY
 
   tags = var.tags
 }

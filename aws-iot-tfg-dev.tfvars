@@ -10,6 +10,8 @@ iot_thing_type_name    = "poc-iot-type"
 iot_thing_name         = "poc-iot-thing"
 iot_policy_name        = "PublicToTopic2"
 iot_certificate_active = true
+iot_client_name        = "poc-iot-client"
+iot_topic              = "poc-iot-topic"
 
 ### Elasticsearch service ###
 domain_name           = "tfg-jorge"

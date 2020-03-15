@@ -22,8 +22,8 @@ rootCAPath = "/home/jorge/tfg/aws-iot-tfg/certs/AmazonRootCA1.pem"
 certificatePath = "/home/jorge/tfg/aws-iot-tfg/certs/cert.crt"
 privateKeyPath = "/home/jorge/tfg/aws-iot-tfg/certs/private_key.pem"
 port = 443
-clientId = "clientID"
-topic = "topic_2"
+clientId = "poc-iot-client"
+topic = "poc-iot-topic"
 
 # Init AWSIoTMQTTClient
 myAWSIoTMQTTClient = None
@@ -53,7 +53,7 @@ while True:
     message['message'] = "Hola"
     message['sequence'] = loopCount
     messageJson = json.dumps(message)
-    myAWSIoTMQTTClient.publish('topic_2', messageJson, 1)
-    print('Published topic %s: %s\n' % ('topic_2', messageJson))
+    myAWSIoTMQTTClient.publish(topic, messageJson, 1)
+    print('Published topic %s: %s\n' % (topic, messageJson))
     loopCount += 1
     time.sleep(1)

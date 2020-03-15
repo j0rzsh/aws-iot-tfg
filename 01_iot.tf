@@ -22,7 +22,6 @@ resource "aws_iot_policy_attachment" "poc" {
   target = aws_iot_certificate.poc.arn
 }
 resource "aws_iot_policy" "poc" {
-  ##This has to be polished
   name = var.iot_policy_name
 
   policy = <<EOF
@@ -30,11 +29,18 @@ resource "aws_iot_policy" "poc" {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Action": [
-        "iot:*"
-      ],
       "Effect": "Allow",
-      "Resource": "*"
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": "arn:aws:iot:eu-west-1:779305303493:client/${var.iot_client_name}"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Publish"
+      ],
+      "Resource": "arn:aws:iot:eu-west-1:779305303493:topic/${var.iot_topic}"
     }
   ]
 }
