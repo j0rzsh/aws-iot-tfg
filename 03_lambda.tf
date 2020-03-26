@@ -1,5 +1,5 @@
-resource "aws_iam_role" "poc" {
-  name = "iam_for_lambda"
+resource "aws_iam_role" "poc_lambda_index_to_es" {
+  name = var.lambda_index_to_es_role_name
 
   assume_role_policy = <<EOF
 {
@@ -18,8 +18,8 @@ resource "aws_iam_role" "poc" {
 EOF
 }
 
-resource "aws_iam_policy" "policy" {
-  name = "test_policy"
+resource "aws_iam_policy" "poc_lambda_index_to_es" {
+  name = var.lambda_index_to_es_policy_name
 
   policy = <<EOF
 {
@@ -37,7 +37,7 @@ resource "aws_iam_policy" "policy" {
 				"logs:CreateLogStream",
 				"logs:PutLogEvents"
 			],
-			"Resource": "arn:aws:logs:eu-west-1:${data.aws_caller_identity.current.account_id}:*"
+			"Resource": "arn:aws:logs:${local.region}:${local.account_id}:*"
 		},
 		{
 			"Effect": "Allow",
@@ -49,10 +49,10 @@ resource "aws_iam_policy" "policy" {
 EOF
 }
 
-resource "aws_iam_policy_attachment" "test-attach" {
-  name       = "test-attachment"
-  roles      = [aws_iam_role.poc.name]
-  policy_arn = aws_iam_policy.policy.arn
+resource "aws_iam_policy_attachment" "poc_lambda_index_to_es" {
+  name       = "poc-lambda-index-to-es"
+  roles      = [aws_iam_role.poc_lambda_index_to_es.name]
+  policy_arn = aws_iam_policy.poc_lambda_index_to_es.arn
 }
 # resource "aws_lambda_function" "lambda" {
 

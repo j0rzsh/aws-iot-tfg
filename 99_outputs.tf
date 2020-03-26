@@ -31,6 +31,8 @@ output "iot_certificate_public_key" {
 output "iot_certificate_private_key" {
   value = aws_iot_certificate.poc.private_key
 }
+
+### Elasticsearch ###
 output "elastisearch_domain_arn" {
   value = aws_elasticsearch_domain.poc.arn
 }

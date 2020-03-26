@@ -33,14 +33,14 @@ resource "aws_iot_policy" "poc" {
       "Action": [
         "iot:Connect"
       ],
-      "Resource": "arn:aws:iot:eu-west-1:779305303493:client/${var.iot_client_name}"
+      "Resource": "arn:aws:iot:${local.region}:${local.account_id}:client/${var.iot_client_name}"
     },
     {
       "Effect": "Allow",
       "Action": [
         "iot:Publish"
       ],
-      "Resource": "arn:aws:iot:eu-west-1:779305303493:topic/${var.iot_topic}"
+      "Resource": "arn:aws:iot:${local.region}:${local.account_id}:topic/${var.iot_topic}"
     }
   ]
 }

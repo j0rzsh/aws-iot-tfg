@@ -1,4 +1,5 @@
 certs/
+config/
 # Local .terraform directories
 **/.terraform/*
 .terraform
