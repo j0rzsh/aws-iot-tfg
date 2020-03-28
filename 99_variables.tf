@@ -17,11 +17,11 @@ variable "iot_client_name" {
 variable "iot_topic" {
   description = "IoT topic that would be used to publish messages"
 }
-variable "iot_topic_rule_enabled"{
+variable "iot_topic_rule_enabled" {
   description = "Enables or Disables the IoT Topic Rule"
-  default = false
+  default     = false
 }
-variable "iot_topic_rule_sql_version"{
+variable "iot_topic_rule_sql_version" {
   description = "SQL Version for the IoT Topic Rule"
 }
 
