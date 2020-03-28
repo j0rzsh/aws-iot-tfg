@@ -17,6 +17,7 @@ cert = json["iot_certificate_pem"]["value"]
 private_key = json["iot_certificate_private_key"]["value"]
 public_key = json["iot_certificate_public_key"]["value"]
 elasticsearch_domain = json["elastisearch_domain_endpoint"]["value"]
+iot_endpoint = json["iot_endpoint"]["value"]
 
 fcert = open('../certs/cert.crt', 'w')
 fcert.write(cert)
@@ -32,4 +33,8 @@ fpub.close()
 
 fes = open('../config/elasticsearch_domain', 'w')
 fes.write(elasticsearch_domain)
+fes.close()
+
+fes = open('../config/iot_endpoint', 'w')
+fes.write(iot_endpoint)
 fes.close()

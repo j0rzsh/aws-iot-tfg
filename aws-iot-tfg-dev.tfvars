@@ -12,10 +12,15 @@ iot_policy_name        = "PublicToTopic2"
 iot_certificate_active = true
 iot_client_name        = "poc-iot-client"
 iot_topic              = "poc-iot-topic"
+iot_topic_rule_enabled = false
+iot_topic_rule_sql_version = "2016-03-23"
 
 ### Lambda ###
 lambda_index_to_es_role_name   = "lambda-index-to-es"
 lambda_index_to_es_policy_name = "lambda-index-to-es"
+lambda_index_to_es_lambda_name = "lambda-index-to-es"
+lambda_index_to_es_runtime = ""
+lambda_index_to_es_handler = ""
 
 ### Elasticsearch service ###
 es_domain_name           = "tfg-jorge"

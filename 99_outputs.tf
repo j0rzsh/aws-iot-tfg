@@ -1,4 +1,7 @@
 ### IoT ###
+output "iot_endpoint" {
+  value = data.aws_iot_endpoint.poc.id
+}
 output "iot_thing_default_client_id" {
   value = aws_iot_thing.poc.default_client_id
 }

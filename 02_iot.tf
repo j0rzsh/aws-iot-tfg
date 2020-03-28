@@ -1,3 +1,5 @@
+data "aws_iot_endpoint" "poc" {}
+
 resource "aws_iot_thing_type" "poc" {
   name = var.iot_thing_type_name
 }
@@ -45,4 +47,16 @@ resource "aws_iot_policy" "poc" {
   ]
 }
 EOF
+}
+
+resource "aws_iot_topic_rule" "rule" {
+  name        = var.iot_topic
+  description = "${format("Sends from %s to Lambda %s", var.iot_topic, var.lambda_index_to_es_lambda_name)}"
+  enabled     = var.iot_topic_rule_enabled
+  sql         = "${format("SELECT * FROM '%s'", var.iot_topic)}"
+  sql_version = var.iot_topic_rule_sql_version
+
+  lambda {
+    function_arn = aws_lambda_function.poc_lambda_index_to_es.arn
+  }
 }
