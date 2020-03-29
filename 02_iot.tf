@@ -4,24 +4,45 @@ resource "aws_iot_thing_type" "poc" {
   name = var.iot_thing_type_name
 }
 
-resource "aws_iot_thing" "poc" {
-  name            = var.iot_thing_name
-  thing_type_name = aws_iot_thing_type.poc.name
-  attributes      = var.tags
-}
+module "sensor1" {
+  source = "./aws-iot-thing"
 
-resource "aws_iot_certificate" "poc" {
-  active = var.iot_certificate_active
-}
+  iot_thing_name         = "${format("%s-1", var.iot_thing_name)}"
+  thing_type_name        = aws_iot_thing_type.poc.name
+  iot_certificate_active = var.iot_certificate_active
+  policy                 = aws_iot_policy.poc.name
 
-resource "aws_iot_thing_principal_attachment" "poc" {
-  principal = aws_iot_certificate.poc.arn
-  thing     = aws_iot_thing.poc.name
+  tags = var.tags
 }
+module "sensor2" {
+  source = "./aws-iot-thing"
 
-resource "aws_iot_policy_attachment" "poc" {
-  policy = aws_iot_policy.poc.name
-  target = aws_iot_certificate.poc.arn
+  iot_thing_name         = "${format("%s-2", var.iot_thing_name)}"
+  thing_type_name        = aws_iot_thing_type.poc.name
+  iot_certificate_active = var.iot_certificate_active
+  policy                 = aws_iot_policy.poc.name
+
+  tags = var.tags
+}
+module "sensor3" {
+  source = "./aws-iot-thing"
+
+  iot_thing_name         = "${format("%s-3", var.iot_thing_name)}"
+  thing_type_name        = aws_iot_thing_type.poc.name
+  iot_certificate_active = var.iot_certificate_active
+  policy                 = aws_iot_policy.poc.name
+
+  tags = var.tags
+}
+module "sensor4" {
+  source = "./aws-iot-thing"
+
+  iot_thing_name         = "${format("%s-4", var.iot_thing_name)}"
+  thing_type_name        = aws_iot_thing_type.poc.name
+  iot_certificate_active = var.iot_certificate_active
+  policy                 = aws_iot_policy.poc.name
+
+  tags = var.tags
 }
 resource "aws_iot_policy" "poc" {
   name = var.iot_policy_name
@@ -35,7 +56,7 @@ resource "aws_iot_policy" "poc" {
       "Action": [
         "iot:Connect"
       ],
-      "Resource": "arn:aws:iot:${local.region}:${local.account_id}:client/${var.iot_client_name}"
+      "Resource": "arn:aws:iot:${local.region}:${local.account_id}:client/${var.iot_client_name}-*"
     },
     {
       "Effect": "Allow",
@@ -49,14 +70,14 @@ resource "aws_iot_policy" "poc" {
 EOF
 }
 
-resource "aws_iot_topic_rule" "rule" {
-  name        = var.iot_topic
-  description = "${format("Sends from %s to Lambda %s", var.iot_topic, var.lambda_index_to_es_lambda_name)}"
-  enabled     = var.iot_topic_rule_enabled
-  sql         = "${format("SELECT * FROM '%s'", var.iot_topic)}"
-  sql_version = var.iot_topic_rule_sql_version
+# resource "aws_iot_topic_rule" "poc" {
+#   name        = var.iot_topic
+#   description = "${format("Sends from %s to Lambda %s", var.iot_topic, var.lambda_index_to_es_lambda_name)}"
+#   enabled     = var.iot_topic_rule_enabled
+#   sql         = "${format("SELECT * FROM '%s'", var.iot_topic)}"
+#   sql_version = var.iot_topic_rule_sql_version
 
-  lambda {
-    function_arn = aws_lambda_function.poc_lambda_index_to_es.arn
-  }
-}
+#   lambda {
+#     function_arn = aws_lambda_function.poc_lambda_index_to_es.arn
+#   }
+# }

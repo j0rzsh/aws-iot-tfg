@@ -56,14 +56,23 @@ resource "aws_iam_policy_attachment" "poc_lambda_index_to_es" {
 }
 
 resource "aws_lambda_function" "poc_lambda_index_to_es" {
-  filename      = "lambda_function_payload.zip"
+  filename      = "${format("lambdas/%s.zip", var.lambda_index_to_es_lambda_name)}"
   function_name = var.lambda_index_to_es_lambda_name
   role          = aws_iam_role.poc_lambda_index_to_es.arn
   handler       = var.lambda_index_to_es_handler
+  runtime       = var.lambda_index_to_es_runtime
 
   environment {
     variables = {
       es_host = aws_elasticsearch_domain.poc.endpoint
     }
   }
+
+  tags = var.tags
+}
+
+data "archive_file" "poc_lambda_index_to_es" {
+  type        = "zip"
+  source_file = "${format("lambdas/%s.py", var.lambda_index_to_es_lambda_name)}"
+  output_path = "${format("lambdas/%s.zip", var.lambda_index_to_es_lambda_name)}"
 }
