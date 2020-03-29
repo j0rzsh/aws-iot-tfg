@@ -1,6 +1,6 @@
 notebook.txt
-
-certs/
+.vscode/
+certs/sensor*
 config/
 # Local .terraform directories
 **/.terraform/*
