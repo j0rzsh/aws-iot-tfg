@@ -56,11 +56,13 @@ resource "aws_iam_policy_attachment" "poc_lambda_index_to_es" {
 }
 
 resource "aws_lambda_function" "poc_lambda_index_to_es" {
-  filename      = "${format("lambdas/%s.zip", var.lambda_index_to_es_lambda_name)}"
-  function_name = var.lambda_index_to_es_lambda_name
-  role          = aws_iam_role.poc_lambda_index_to_es.arn
-  handler       = var.lambda_index_to_es_handler
-  runtime       = var.lambda_index_to_es_runtime
+  filename         = format(".terraform/lambdas/%s.zip", var.lambda_index_to_es_lambda_name)
+  function_name    = var.lambda_index_to_es_lambda_name
+  role             = aws_iam_role.poc_lambda_index_to_es.arn
+  handler          = var.lambda_index_to_es_handler
+  runtime          = var.lambda_index_to_es_runtime
+  source_code_hash = data.archive_file.poc_lambda_index_to_es.output_base64sha256
+  layers           = [aws_lambda_layer_version.poc_layer_index_to_es.arn]
 
   environment {
     variables = {
@@ -71,8 +73,21 @@ resource "aws_lambda_function" "poc_lambda_index_to_es" {
   tags = var.tags
 }
 
+resource "aws_lambda_layer_version" "poc_layer_index_to_es" {
+  filename            = format(".terraform/lambdas/layers/%s.zip", var.layer_index_to_es_lambda_name)
+  layer_name          = var.layer_index_to_es_lambda_name
+  source_code_hash    = data.archive_file.poc_layer_index_to_es.output_base64sha256
+  compatible_runtimes = [var.lambda_index_to_es_runtime]
+}
+
 data "archive_file" "poc_lambda_index_to_es" {
   type        = "zip"
-  source_file = "${format("lambdas/%s.py", var.lambda_index_to_es_lambda_name)}"
-  output_path = "${format("lambdas/%s.zip", var.lambda_index_to_es_lambda_name)}"
+  source_dir  = "${format("lambdas/%s", var.lambda_index_to_es_lambda_name)}"
+  output_path = "${format(".terraform/lambdas/%s.zip", var.lambda_index_to_es_lambda_name)}"
+}
+
+data "archive_file" "poc_layer_index_to_es" {
+  type        = "zip"
+  source_dir  = "${format("lambdas/layers/%s", var.layer_index_to_es_lambda_name)}"
+  output_path = "${format(".terraform/lambdas/layers/%s.zip", var.layer_index_to_es_lambda_name)}"
 }

@@ -9,10 +9,6 @@ credentials = boto3.Session().get_credentials()
 awsauth = AWS4Auth(credentials.access_key, credentials.secret_key,
                    region, service, session_token=credentials.token)
 
-# This host will be OS variable of a lambda
-
-# "search-tfg-jorge-25y2fkdcdfwmwzfsrxwdyfi6qy.eu-west-1.es.amazonaws.com"
-
 
 def init_es():
     host = os.environ["es_host"]

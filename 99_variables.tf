@@ -41,6 +41,9 @@ variable "lambda_index_to_es_runtime" {
 variable "lambda_index_to_es_handler" {
   description = "Handler of the Lambda function that indexes to Elasticsearch from IoT Topic"
 }
+variable "layer_index_to_es_lambda_name" {
+  description = "Layer for the Lambda function that indexes to Elasticsearch from IoT Topic"
+}
 
 ### Elasticsearch ###
 variable "es_domain_name" {
