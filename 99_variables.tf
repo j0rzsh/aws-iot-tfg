@@ -17,6 +17,10 @@ variable "iot_client_name" {
 variable "iot_topic" {
   description = "IoT topic that would be used to publish messages"
 }
+variable "iot_topic_rule_name" {
+  description = "Name of the IoT Topic rule"
+}
+
 variable "iot_topic_rule_enabled" {
   description = "Enables or Disables the IoT Topic Rule"
   default     = false

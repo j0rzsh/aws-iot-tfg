@@ -7,6 +7,7 @@ iot_policy_name            = "poc-public-to-topic"
 iot_certificate_active     = true
 iot_client_name            = "poc-iot-client"
 iot_topic                  = "poc-iot-topic"
+iot_topic_rule_name        = "poc"
 iot_topic_rule_enabled     = false
 iot_topic_rule_sql_version = "2016-03-23"
 

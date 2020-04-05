@@ -14,6 +14,7 @@ module "sensor1" {
 
   tags = var.tags
 }
+
 module "sensor2" {
   source = "./aws-iot-thing"
 
@@ -24,6 +25,7 @@ module "sensor2" {
 
   tags = var.tags
 }
+
 module "sensor3" {
   source = "./aws-iot-thing"
 
@@ -34,6 +36,7 @@ module "sensor3" {
 
   tags = var.tags
 }
+
 module "sensor4" {
   source = "./aws-iot-thing"
 
@@ -44,6 +47,7 @@ module "sensor4" {
 
   tags = var.tags
 }
+
 resource "aws_iot_policy" "poc" {
   name = var.iot_policy_name
 
@@ -70,14 +74,14 @@ resource "aws_iot_policy" "poc" {
 EOF
 }
 
-# resource "aws_iot_topic_rule" "poc" {
-#   name        = var.iot_topic
-#   description = "${format("Sends from %s to Lambda %s", var.iot_topic, var.lambda_index_to_es_lambda_name)}"
-#   enabled     = var.iot_topic_rule_enabled
-#   sql         = "${format("SELECT * FROM '%s'", var.iot_topic)}"
-#   sql_version = var.iot_topic_rule_sql_version
+resource "aws_iot_topic_rule" "poc" {
+  name        = "pru"
+  description = format("Sends from %s to Lambda %s", var.iot_topic, var.lambda_index_to_es_lambda_name)
+  enabled     = var.iot_topic_rule_enabled
+  sql         = format("SELECT * FROM '%s'", var.iot_topic)
+  sql_version = var.iot_topic_rule_sql_version
 
-#   lambda {
-#     function_arn = aws_lambda_function.poc_lambda_index_to_es.arn
-#   }
-# }
+  lambda {
+    function_arn = aws_lambda_function.poc_lambda_index_to_es.arn
+  }
+}
