@@ -70,6 +70,11 @@ variable "es_tls_security_policy" {
   description = "TLS Security policy for Elasticsearch"
 }
 
+### Other ###
+variable "poc_es_index" {
+  description = "Index in which the information will be stored"
+}
+
 ### Tags ###
 variable "tags" {
   type = map

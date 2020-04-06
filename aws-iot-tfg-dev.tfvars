@@ -1,4 +1,6 @@
+####################################
 ### Variables for Cropland "poc" ###
+####################################
 
 ### IoT ###
 iot_thing_type_name        = "poc-iot-type"
@@ -18,6 +20,13 @@ lambda_index_to_es_lambda_name = "poc_index_to_es"
 lambda_index_to_es_runtime     = "python3.7"
 lambda_index_to_es_handler     = "poc_index_to_es.lambda_handler"
 layer_index_to_es_lambda_name  = "poc_index_to_es"
+
+### Other ###
+poc_es_index = "poc"
+
+###############################################
+### Variables for the Elasticsearch Service ###
+###############################################
 
 ### Elasticsearch service ###
 es_domain_name           = "tfg-jorge"
