@@ -75,7 +75,7 @@ EOF
 }
 
 resource "aws_iot_topic_rule" "poc" {
-  name        = "pru"
+  name        = var.iot_topic_rule_name
   description = format("Sends from %s to Lambda %s", var.iot_topic, var.lambda_index_to_es_lambda_name)
   enabled     = var.iot_topic_rule_enabled
   sql         = format("SELECT * FROM '%s'", var.iot_topic)

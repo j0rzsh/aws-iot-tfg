@@ -6,7 +6,7 @@ import boto3
 with open("../config/elasticsearch_indices") as indices_file:
     indices = [line.strip() for line in indices_file]
 
-with open("../config/elastichsearch_domain") as es_domain_file:
+with open("../config/elasticsearch_domain") as es_domain_file:
     host = es_domain_file.readline()
 
 service = "es"

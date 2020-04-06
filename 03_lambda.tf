@@ -67,6 +67,7 @@ resource "aws_lambda_function" "poc_lambda_index_to_es" {
   environment {
     variables = {
       es_host = aws_elasticsearch_domain.poc.endpoint
+      es_index = var.poc_es_index
     }
   }
 

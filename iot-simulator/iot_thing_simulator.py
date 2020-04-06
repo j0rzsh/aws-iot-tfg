@@ -7,19 +7,19 @@ import random
 # Arguments
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--thing-name', action="store", required=True,
-                    help="Nmae of the Thing that will run this program")
-parser.add_argument('--client-id', action="store", required=True,
+parser.add_argument("--thing-name", action="store", required=True,
+                    help="Name of the Thing that will run this program")
+parser.add_argument("--client-id", action="store", required=True,
                     help="Client ID of the IoT Thing")
-parser.add_argument('--topic-name', action="store", required=True,
+parser.add_argument("--topic-name", action="store", required=True,
                     help="IoT Topic Name where the IoT Thing will publish")
-parser.add_argument('--iot-endpoint', action="store", required=True,
+parser.add_argument("--iot-endpoint", action="store", required=True,
                     help="IoT Endpoint of the AWS Account")
-parser.add_argument('--root-ca-path', action="store", required=True,
+parser.add_argument("--root-ca-path", action="store", required=True,
                     help="Root CA Path")
-parser.add_argument('--certificate-path', action="store", required=True,
+parser.add_argument("--certificate-path", action="store", required=True,
                     help="Certificate Path")
-parser.add_argument('--private-key-path', action="store", required=True,
+parser.add_argument("--private-key-path", action="store", required=True,
                     help="Private Key Path")
 
 args = parser.parse_args()
@@ -36,7 +36,7 @@ thing_name = args.thing_name
 
 # Measures
 measures = {}
-measures['thing_name'] = thing_name
+measures["thing_name"] = thing_name
 measures["air_temperature"] = 20  # ºC
 measures["air_humidity"] = 60  # %
 measures["soil_temperature"] = 13  # ºC
@@ -123,5 +123,5 @@ while True:
     except Exception:
         print("Not published")
         pass
-        # print('Published topic %s: %s\n' % (topic_name, measures))
+        # print("Published topic %s: %s\n" % (topic_name, measures))
     time.sleep(random.randint(5, 10))
