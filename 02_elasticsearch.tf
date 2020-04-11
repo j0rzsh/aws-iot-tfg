@@ -30,18 +30,6 @@ resource "aws_elasticsearch_domain" "poc" {
       "Action": "es:*",
       "Resource": "arn:aws:es:${local.region}:${local.account_id}:domain/${var.es_domain_name}/*"
     },
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "*"
-      },
-      "Condition": {
-        "IpAddress": {
-          "aws:SourceIp": [
-            "2.153.146.78/32"
-          ]
-        }
-      },
       "Action": "es:*",
       "Resource": "arn:aws:es:${local.region}:${local.account_id}:domain/${var.es_domain_name}/*"
     }
