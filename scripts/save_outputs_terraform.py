@@ -20,9 +20,9 @@ for sensor in sensors:
         os.mkdir("../certs/" + sensor, mode=0o755)
         os.chmod("../certs/" + sensor, mode=0o755)
 
-    cert = json["iot_certificate_pem_" + sensor]["value"]
-    private_key = json["iot_certificate_private_key_" + sensor]["value"]
-    public_key = json["iot_certificate_public_key_" + sensor]["value"]
+    cert = json["poc_iot_certificate_pem_" + sensor]["value"]
+    private_key = json["poc_iot_certificate_private_key_" + sensor]["value"]
+    public_key = json["poc_iot_certificate_public_key_" + sensor]["value"]
 
     fcert = open("../certs/" + sensor + "/cert.crt", "w")
     fcert.write(cert)

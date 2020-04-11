@@ -1,32 +1,10 @@
-####################################
-### Variables for Cropland "poc" ###
-####################################
+###########################################
+### Global variables for every cropland ###
+###########################################
 
-### IoT ###
-iot_thing_type_name        = "poc-iot-type"
-iot_thing_name             = "poc-iot-thing"
-iot_policy_name            = "poc-public-to-topic"
-iot_certificate_active     = true
-iot_client_name            = "poc-iot-client"
-iot_topic                  = "poc-iot-topic"
-iot_topic_rule_name        = "poc"
-iot_topic_rule_enabled     = false
-iot_topic_rule_sql_version = "2016-03-23"
-
-### Lambda ###
-lambda_index_to_es_role_name   = "poc-lambda-index-to-es"
-lambda_index_to_es_policy_name = "poc-lambda-index-to-es"
-lambda_index_to_es_lambda_name = "poc_index_to_es"
-lambda_index_to_es_runtime     = "python3.7"
-lambda_index_to_es_handler     = "poc_index_to_es.lambda_handler"
-layer_index_to_es_lambda_name  = "poc_index_to_es"
-
-### Other ###
-poc_es_index = "poc"
-
-###############################################
-### Variables for the Elasticsearch Service ###
-###############################################
+### Lambda Layer ###
+layer_index_to_es_lambda_name  = "index_to_es"
+layer_index_to_es_runtimes     = "python3.7"
 
 ### Elasticsearch service ###
 es_domain_name           = "tfg-jorge"
@@ -43,3 +21,28 @@ tags = {
   owner       = "jorge"
   terraform   = "true"
 }
+
+####################################
+### Variables for Cropland "poc" ###
+####################################
+
+### IoT ###
+poc_iot_thing_type_name        = "poc-iot-type"
+poc_iot_thing_name             = "poc-iot-thing"
+poc_iot_policy_name            = "poc-public-to-topic"
+poc_iot_certificate_active     = true
+poc_iot_client_name            = "poc-iot-client"
+poc_iot_topic                  = "poc-iot-topic"
+poc_iot_topic_rule_name        = "poc"
+poc_iot_topic_rule_enabled     = false
+poc_iot_topic_rule_sql_version = "2016-03-23"
+
+### Lambda ###
+poc_lambda_index_to_es_role_name   = "poc-lambda-index-to-es"
+poc_lambda_index_to_es_policy_name = "poc-lambda-index-to-es"
+poc_lambda_index_to_es_lambda_name = "poc_index_to_es"
+poc_lambda_index_to_es_runtime     = "python3.7"
+poc_lambda_index_to_es_handler     = "poc_index_to_es.lambda_handler"
+
+### Other ###
+poc_es_index = "poc"
