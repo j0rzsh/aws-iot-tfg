@@ -15,6 +15,7 @@ if not os.path.isdir("../config"):
     os.mkdir("../config", mode=0o755)
     os.chmod("../config", mode=0o755)
 
+# IoT Things - Sensors
 for sensor in sensors:
     if not os.path.isdir("../certs/" + sensor):
         os.mkdir("../certs/" + sensor, mode=0o755)
@@ -36,13 +37,22 @@ for sensor in sensors:
     fpub.write(public_key)
     fpub.close()
 
+# Elasticsearch Domain
 elasticsearch_domain = json["elastisearch_domain_endpoint"]["value"]
-iot_endpoint = json["iot_endpoint"]["value"]
-
 fes = open("../config/elasticsearch_domain", "w")
 fes.write(elasticsearch_domain)
 fes.close()
 
+# IoT Endpoint
+iot_endpoint = json["iot_endpoint"]["value"]
+
 fiotend = open("../config/iot_endpoint", "w")
 fiotend.write(iot_endpoint)
 fiotend.close()
+
+# Simulator IP
+simulator_ip = json["simulator_ip"]["value"]
+
+fiip = open("../config/simulator_ip", "w")
+fiip.write(simulator_ip)
+fiip.close()

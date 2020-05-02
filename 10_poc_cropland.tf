@@ -8,9 +8,9 @@ module "sensor1" {
   source = "./aws-iot-thing"
 
   poc_iot_thing_name         = "${format("%s-1", var.poc_iot_thing_name)}"
-  thing_type_name        = aws_iot_thing_type.poc.name
+  thing_type_name            = aws_iot_thing_type.poc.name
   poc_iot_certificate_active = var.poc_iot_certificate_active
-  policy                 = aws_iot_policy.poc.name
+  policy                     = aws_iot_policy.poc.name
 
   tags = var.tags
 }
@@ -19,9 +19,9 @@ module "sensor2" {
   source = "./aws-iot-thing"
 
   poc_iot_thing_name         = "${format("%s-2", var.poc_iot_thing_name)}"
-  thing_type_name        = aws_iot_thing_type.poc.name
+  thing_type_name            = aws_iot_thing_type.poc.name
   poc_iot_certificate_active = var.poc_iot_certificate_active
-  policy                 = aws_iot_policy.poc.name
+  policy                     = aws_iot_policy.poc.name
 
   tags = var.tags
 }
@@ -30,9 +30,9 @@ module "sensor3" {
   source = "./aws-iot-thing"
 
   poc_iot_thing_name         = "${format("%s-3", var.poc_iot_thing_name)}"
-  thing_type_name        = aws_iot_thing_type.poc.name
+  thing_type_name            = aws_iot_thing_type.poc.name
   poc_iot_certificate_active = var.poc_iot_certificate_active
-  policy                 = aws_iot_policy.poc.name
+  policy                     = aws_iot_policy.poc.name
 
   tags = var.tags
 }
@@ -41,9 +41,9 @@ module "sensor4" {
   source = "./aws-iot-thing"
 
   poc_iot_thing_name         = "${format("%s-4", var.poc_iot_thing_name)}"
-  thing_type_name        = aws_iot_thing_type.poc.name
+  thing_type_name            = aws_iot_thing_type.poc.name
   poc_iot_certificate_active = var.poc_iot_certificate_active
-  policy                 = aws_iot_policy.poc.name
+  policy                     = aws_iot_policy.poc.name
 
   tags = var.tags
 }
@@ -154,7 +154,7 @@ resource "aws_lambda_function" "poc_lambda_index_to_es" {
 
   environment {
     variables = {
-      es_host = aws_elasticsearch_domain.poc.endpoint
+      es_host  = aws_elasticsearch_domain.poc.endpoint
       es_index = var.poc_es_index
     }
   }

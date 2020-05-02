@@ -3,8 +3,8 @@
 ###########################################
 
 ### Lambda Layer ###
-layer_index_to_es_lambda_name  = "index_to_es"
-layer_index_to_es_runtimes     = "python3.7"
+layer_index_to_es_lambda_name = "index_to_es"
+layer_index_to_es_runtimes    = "python3.7"
 
 ### Elasticsearch service ###
 es_domain_name           = "tfg-jorge"

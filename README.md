@@ -55,8 +55,8 @@ index-3
 In the repository's root directory:
 
 ```bash
-docker build -t <IMAGE-NAME-THAT-YOU-WHANT> .
-docker run -d <IMAGE-NAME-THAT-YOU-WHANT>
+docker build -t <IMAGE-NAME-THAT-YOU-WANT> .
+docker run -d <IMAGE-NAME-THAT-YOU-WANT>
 ```
 
 This docker will run forever if it is not stopped.
