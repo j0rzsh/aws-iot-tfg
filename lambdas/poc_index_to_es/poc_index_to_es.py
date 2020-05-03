@@ -42,7 +42,7 @@ def lambda_handler(event, context):
     es = init_es()
     try:
         timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-        thing_name = event["thing_name"]
+        index = INDEX_NAME + "-" + event["thing_name"]
         event.pop("thing_name")
         event["air_temperature"]
         event["air_humidity"]
@@ -52,7 +52,7 @@ def lambda_handler(event, context):
     except Exception:
         pass
 
-    resp = index_to_es(client=es, index=INDEX_NAME, doc_type=thing_name,
+    resp = index_to_es(client=es, index=index, doc_type="_doc",
                        id=timestamp, body=event, request_timeout=45)
 
     return resp
