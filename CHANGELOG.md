@@ -5,11 +5,19 @@ All notable changes from aws-iot-tfg will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 03-05-2020
+
+### Changed
+
+- Elasticseach indices now are one per IoT Thing
+- Now every thing send to an specific topic and there is an IoT rule for every one
+- Removed init_es_indices for not being necessary
+
 ## [0.7.0] - 11-04-2020
 
-- Code refactor for making easier to add new croplands to the system.
-  - 0[0-9]_*.tf files are for global resources.
-  - 99_global_outputs.tf and 99_global_variables.tf are system level outputs and variables.
+- Code refactor for making easier to add new croplands to the system:
+  - 0[0-9]_*.tf files are for global resources
+  - 99_global_outputs.tf and 99_global_variables.tf are system level outputs and variables
   - Specific files for specific cropland resorces
   - tfvars file is intended to work as environment level (All system and every cropland variables)
 
@@ -42,5 +50,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.1.0] - 15-02-2020
 
-- Main Terraform file.
-- Backend init.
+- Main Terraform file
+- Backend init

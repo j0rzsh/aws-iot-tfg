@@ -124,4 +124,4 @@ while True:
         print("Not published")
         pass
         # print("Published topic %s: %s\n" % (topic_name, measures))
-    time.sleep(random.randint(5, 10))
+    time.sleep(random.randint(10, 20))
