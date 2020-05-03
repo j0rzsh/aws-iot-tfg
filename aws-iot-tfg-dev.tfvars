@@ -27,6 +27,7 @@ tags = {
 ####################################
 
 ### IoT ###
+poc_iot_thing_number           = 4
 poc_iot_thing_type_name        = "poc-iot-type"
 poc_iot_thing_name             = "poc-iot-thing"
 poc_iot_policy_name            = "poc-public-to-topic"
@@ -34,7 +35,7 @@ poc_iot_certificate_active     = true
 poc_iot_client_name            = "poc-iot-client"
 poc_iot_topic                  = "poc-iot-topic"
 poc_iot_topic_rule_name        = "poc"
-poc_iot_topic_rule_enabled     = false
+poc_iot_topic_rule_enabled     = true
 poc_iot_topic_rule_sql_version = "2016-03-23"
 
 ### Lambda ###
