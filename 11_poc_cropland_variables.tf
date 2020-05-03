@@ -1,4 +1,7 @@
 ### IoT ###
+variable "poc_iot_thing_number" {
+  description = "Number of IoT Thing that are going to be created"
+}
 variable "poc_iot_thing_type_name" {
   description = "Name of the IoT Thing Type"
 }
