@@ -89,6 +89,16 @@ resource "aws_instance" "simulator" {
   vpc_security_group_ids = [aws_security_group.allow_home.id]
   subnet_id              = aws_subnet.simulator.id
 
+  user_data = <<USER_DATA
+		#! /bin/bash
+    sudo yum update -y
+    sudo yum install python3 -y
+    sudo yum install python3-pip
+    sudo yum install docker -y
+    sudo usermod -aG docker ec2-user
+    sudo service docker start
+	USER_DATA
+
   tags = merge(var.tags,
     {
       Name = local.simulator_name

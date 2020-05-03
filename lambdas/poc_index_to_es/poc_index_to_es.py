@@ -49,6 +49,7 @@ def lambda_handler(event, context):
         event["soil_temperature"]
         event["soil_moisture"]
         event["atmospheric_pressure"]
+        event["date"] = timestamp
     except Exception:
         pass
 

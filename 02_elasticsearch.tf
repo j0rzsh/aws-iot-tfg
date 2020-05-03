@@ -38,7 +38,8 @@ resource "aws_elasticsearch_domain" "poc" {
       "Condition": {
         "IpAddress": {
           "aws:SourceIp": [
-            "${local.my_ip}"
+            "${local.my_ip}",
+            "${aws_eip.simulator.public_ip}"
           ]
         }
       },
