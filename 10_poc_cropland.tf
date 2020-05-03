@@ -67,7 +67,7 @@ resource "aws_iot_policy" "poc" {
       "Action": [
         "iot:Publish"
       ],
-      "Resource": "arn:aws:iot:${local.region}:${local.account_id}:topic/${var.poc_iot_topic}"
+      "Resource": "arn:aws:iot:${local.region}:${local.account_id}:topic/${var.poc_iot_topic}-*"
     }
   ]
 }
@@ -75,10 +75,12 @@ EOF
 }
 
 resource "aws_iot_topic_rule" "poc" {
-  name        = var.poc_iot_topic_rule_name
-  description = format("Sends from %s to Lambda %s", var.poc_iot_topic, var.poc_lambda_index_to_es_lambda_name)
+  count = var.poc_iot_thing_number
+
+  name        = format("%s%s", var.poc_iot_topic_rule_name, count.index + 1)
+  description = format("Sends from %s-%s to Lambda %s", var.poc_iot_topic, count.index + 1, var.poc_lambda_index_to_es_lambda_name)
   enabled     = var.poc_iot_topic_rule_enabled
-  sql         = format("SELECT * FROM '%s'", var.poc_iot_topic)
+  sql         = format("SELECT * FROM '%s-%s'", var.poc_iot_topic, count.index + 1)
   sql_version = var.poc_iot_topic_rule_sql_version
 
   lambda {
@@ -152,6 +154,8 @@ resource "aws_lambda_function" "poc_lambda_index_to_es" {
   source_code_hash = data.archive_file.poc_lambda_index_to_es.output_base64sha256
   layers           = [aws_lambda_layer_version.poc_layer_index_to_es.arn]
 
+  reserved_concurrent_executions = var.poc_iot_thing_number
+
   environment {
     variables = {
       es_host  = aws_elasticsearch_domain.poc.endpoint
@@ -162,8 +166,18 @@ resource "aws_lambda_function" "poc_lambda_index_to_es" {
   tags = var.tags
 }
 
+resource "aws_lambda_permission" "poc_lambda_index_to_es" {
+  count = var.poc_iot_thing_number
+
+  statement_id  = format("AllowExecutionFromIoTRule%s", count.index + 1)
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.poc_lambda_index_to_es.function_name
+  principal     = "iot.amazonaws.com"
+  source_arn    = aws_iot_topic_rule.poc[count.index].arn
+}
+
 data "archive_file" "poc_lambda_index_to_es" {
   type        = "zip"
-  source_dir  = "${format("lambdas/%s", var.poc_lambda_index_to_es_lambda_name)}"
-  output_path = "${format(".terraform/lambdas/%s.zip", var.poc_lambda_index_to_es_lambda_name)}"
+  source_dir  = format("lambdas/%s", var.poc_lambda_index_to_es_lambda_name)
+  output_path = format(".terraform/lambdas/%s.zip", var.poc_lambda_index_to_es_lambda_name)
 }
