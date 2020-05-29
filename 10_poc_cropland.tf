@@ -65,9 +65,17 @@ resource "aws_iot_policy" "poc" {
     {
       "Effect": "Allow",
       "Action": [
-        "iot:Publish"
+        "iot:Publish",
+        "iot:Receive"
       ],
       "Resource": "arn:aws:iot:${local.region}:${local.account_id}:topic/${var.poc_iot_topic}-*"
+    },
+        {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Subscribe"
+      ],
+      "Resource": "arn:aws:iot:${local.region}:${local.account_id}:topicfilter/${var.poc_iot_topic}-*"
     }
   ]
 }
