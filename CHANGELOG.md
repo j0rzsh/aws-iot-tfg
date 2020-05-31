@@ -5,6 +5,23 @@ All notable changes from aws-iot-tfg will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 31-05-2020
+
+### Features
+
+- Elastisearch Service for data indexing
+- Lambda Layer for indexing data to Elasticsearch
+- IoT Type, 4 IoT Things as sensors and Lambda for indexing data from them
+- Simulator-infra: VPC, Subnet, IGW, EIP, Route Table, EC2
+- Simulator-code: python script dockerized
+- Subscriber simulator: proof of concept, python script
+- Launch and Destroy scripts written in bash
+- Python script to save terraform outputs
+
+### Pending fixes
+
+- Tags in IoT resources are treated different than other resources in AWS. As a result, only 4 Tags are allowed. TO-DO: Separate tags for IoT and for the rest of resources.
+
 ## [0.8.0] - 03-05-2020
 
 ### Changed
