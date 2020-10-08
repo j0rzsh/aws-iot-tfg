@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Features
 
-- Elastisearch Service for data indexing
+- Elasticsearch Service for data indexing
 - Lambda Layer for indexing data to Elasticsearch
 - IoT Type, 4 IoT Things as sensors and Lambda for indexing data from them
 - Simulator-infra: VPC, Subnet, IGW, EIP, Route Table, EC2

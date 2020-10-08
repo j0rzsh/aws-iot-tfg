@@ -18,6 +18,14 @@ locals {
 }
 ```
 
+**NOTE2**: It is necessary to add aws provider configuration. Example:
+
+```hcl
+provider "aws" {
+  region = "eu-west-1"
+}
+```
+
 To launch terraform infrastructure and copy docker to EC2 instance:
 
 ```bash
