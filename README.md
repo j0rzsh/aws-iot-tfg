@@ -71,7 +71,9 @@ python save_outputs_terraform.py
 
 ## Usage: Simulate IoT Devices locally
 
-In the repository's root directory:
+First change <IOT-ENDPOINT> inside iot-simulator/run.sh for its actual value.
+
+Then, in the repository's root directory:
 
 ```bash
 docker build -t <IMAGE-NAME-THAT-YOU-WANT> .
